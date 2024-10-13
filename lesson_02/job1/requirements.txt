@@ -1,0 +1,4 @@
+Flask
+requests
+fastavro
+ruff==0.6.7
