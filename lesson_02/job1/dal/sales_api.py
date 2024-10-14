@@ -15,8 +15,8 @@ def get_sales(date: str, page: bool) -> tuple[int, List[Dict[str, Any]]]:
     """
     response = requests.get(
         url=API_URL,
-        params={'date': date, 'page': page},
-        headers={'Authorization': os.environ.get("AUTH_TOKEN")},
+        params={"date": date, "page": page},
+        headers={"Authorization": os.environ.get("AUTH_TOKEN")},
     )
     is_data = True if response.ok else False
     return is_data, response.json()

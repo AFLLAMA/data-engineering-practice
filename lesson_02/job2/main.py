@@ -10,12 +10,6 @@ from flask import typing as flask_typing
 from lesson_02.job2.bll.sales_api import save_sales_to_stg
 
 
-AUTH_TOKEN = os.environ.get("API_AUTH_TOKEN")
-
-if not AUTH_TOKEN:
-    print("AUTH_TOKEN environment variable must be set")
-
-
 app = Flask(__name__)
 
 
@@ -33,12 +27,18 @@ def main() -> flask_typing.ResponseReturnValue:
     """
     input_data: dict = request.json
 
-    # TODO: implement me
     stg_dir = input_data.get("stg_dir")
     raw_dir = input_data.get("raw_dir")
-    print(f"{stg_dir=:=^100}")
-    print(f"{raw_dir=:=^100}")
 
+    if not stg_dir:
+        return {
+            "message": "stg_dir parameter missed",
+        }, 400
+
+    if not raw_dir:
+        return {
+            "message": "raw_dir parameter missed",
+        }, 400
 
     save_sales_to_stg(stg_dir=stg_dir, raw_dir=raw_dir)
 

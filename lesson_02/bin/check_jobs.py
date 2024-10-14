@@ -19,11 +19,8 @@ STG_DIR = os.path.join(BASE_DIR, "lesson_02", "data", "stg", "sales", "2022-08-0
 def run_job1():
     print("Starting job1:")
     resp = requests.post(
-        url=f'http://localhost:{JOB1_PORT}/',
-        json={
-            "date": "2022-08-09",
-            "raw_dir": RAW_DIR
-        }
+        url=f"http://localhost:{JOB1_PORT}/",
+        json={"date": "2022-08-09", "raw_dir": RAW_DIR},
     )
     assert resp.status_code == 201
     print("job1 completed!")
@@ -32,17 +29,14 @@ def run_job1():
 def run_job2():
     print("Starting job2:")
     resp = requests.post(
-        url=f'http://localhost:{JOB2_PORT}/',
-        json={
-            "raw_dir": RAW_DIR,
-            "stg_dir": STG_DIR
-        }
+        url=f"http://localhost:{JOB2_PORT}/",
+        json={"raw_dir": RAW_DIR, "stg_dir": STG_DIR},
     )
     assert resp.status_code == 201
     print("job2 completed!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run_job1()
     time.sleep(3)
     run_job2()
