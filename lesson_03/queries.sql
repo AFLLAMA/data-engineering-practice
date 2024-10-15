@@ -57,12 +57,8 @@ limit 1;
 -- SQL code goes here...
 select fi.title as film_name
 from film fi
-left join (
-    select distinct f.film_id
-    from film f
-    join inventory i on f.film_id = i.film_id
-    ) as film_inv on film_inv.film_id = fi.film_id
-where film_inv.film_id is null;
+left join inventory i on fi.film_id = i.film_id
+where i.film_id is null;
 
 /*
 5.
