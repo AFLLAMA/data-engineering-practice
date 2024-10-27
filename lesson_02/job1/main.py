@@ -46,11 +46,12 @@ def main() -> flask_typing.ResponseReturnValue:
             "message": "raw_dir parameter missed",
         }, 400
 
-    save_sales_to_local_disk(date=date, raw_dir=raw_dir)
-
-    return {
-        "message": "Data retrieved successfully from API",
-    }, 201
+    if save_sales_to_local_disk(date=date, raw_dir=raw_dir):
+        return {
+            "message": "Data retrieved successfully from API",
+        }, 201
+    else:
+        return {"message": "No data for requested date."}, 400
 
 
 if __name__ == "__main__":
