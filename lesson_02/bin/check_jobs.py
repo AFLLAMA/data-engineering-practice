@@ -14,10 +14,7 @@ def run_job1(job1_port: int, raw_dir: str):
     print("Starting job1:")
     resp = requests.post(
         url=f"http://localhost:{job1_port}/",
-        json={
-            "date": "2022-08-09",
-            "raw_dir": raw_dir
-            },
+        json={"date": "2022-08-09", "raw_dir": raw_dir},
     )
     assert resp.status_code == 201
     print("job1 completed!")
