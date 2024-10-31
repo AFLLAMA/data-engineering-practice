@@ -168,3 +168,9 @@ lesson_02/data/stg/sales/*
 # Keep the raw/stg empty locations
 !lesson_02/data/raw/sales/.gitkeep
 !lesson_02/data/stg/sales/.gitkeep
+
+# Ignore db set-up pagila
+lesson_03/pagila/
+
+# Airflow 
+lesson_02/airflow/logs/
