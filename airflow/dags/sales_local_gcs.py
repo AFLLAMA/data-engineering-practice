@@ -17,7 +17,7 @@ with DAG(
     params={
         "date": Param(default="2022-08-09", description="Date to upload"),
     },
-    tags=["R_D"]
+    tags=["R_D"],
 ) as dag:
     start = EmptyOperator(task_id="start")
     end = EmptyOperator(task_id="end")
@@ -32,7 +32,7 @@ with DAG(
             upload_task = LocalFilesystemToGCSOperator(
                 task_id=f"upload_{filename}_to_gcs",
                 src=file_path,
-                dst=f"{date}/{filename}",
+                dst=f"{'/'.join(date.split('-'))}/{filename}",
                 bucket=Variable.get("BUCKET_NAME"),
                 gcp_conn_id="my_gcs_connection_id",
             )
