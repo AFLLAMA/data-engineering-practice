@@ -14,15 +14,11 @@ with DAG(
     start_date=datetime(2024, 10, 31),
     schedule_interval=None,
     catchup=False,
-    params={
-        "date": Param(default="2022-08-09", description="Date to upload"),
-    },
     tags=["R_D"],
 ) as dag:
     start = EmptyOperator(task_id="start")
     end = EmptyOperator(task_id="end")
-
-    date = dag.params["date"]
+    date = Variable.get("JSON_TO_GCS_DATE")
     folder_path = os.path.join("/mnt", "data", "raw", "sales", date)
 
     if os.path.exists(folder_path):
