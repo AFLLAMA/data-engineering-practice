@@ -173,4 +173,4 @@ lesson_02/data/stg/sales/*
 lesson_03/pagila/
 
 # Airflow 
-lesson_02/airflow/logs/
+airflow/logs/
