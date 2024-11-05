@@ -11,7 +11,8 @@ from airflow.decorators import task_group
 
 with DAG(
     "save_json_to_gcs",
-    start_date=datetime(2024, 10, 31),
+    start_date=datetime(2022, 8, 9),
+    end_date=datetime(2022, 8, 11),
     schedule_interval=None,
     catchup=False,
     tags=["R_D"],
@@ -32,9 +33,6 @@ with DAG(
                     bucket=Variable.get("BUCKET_NAME"),
                     gcp_conn_id="my_gcs_connection_id",
                 )
-
-                    # Define tasks for each local file in selected date
-                
         else:
             raise FileNotFoundError(f"The folder {folder_path} does not exist.")
     group1()
