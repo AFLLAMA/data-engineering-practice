@@ -32,7 +32,7 @@ with DAG(
                     dst=f"{'/'.join(date.split('-'))}/{filename}",
                     bucket=Variable.get("BUCKET_NAME"),
                     gcp_conn_id="my_gcs_connection_id",
-                )                
+                )
         else:
             raise FileNotFoundError(f"The folder {folder_path} does not exist.")
     group1()
