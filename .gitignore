@@ -174,3 +174,6 @@ lesson_03/pagila/
 
 # Airflow 
 airflow/logs/
+
+# Connecction service account details
+final_project/airflow/sa-key.json
