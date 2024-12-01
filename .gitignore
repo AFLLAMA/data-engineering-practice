@@ -173,7 +173,7 @@ lesson_02/data/stg/sales/*
 lesson_03/pagila/
 
 # Airflow 
-airflow/logs/
+final_project/airflow/logs/
 
 # Connecction service account details
 final_project/airflow/sa-key.json
