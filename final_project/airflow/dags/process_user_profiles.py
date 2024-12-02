@@ -1,10 +1,8 @@
 from airflow import DAG
-from airflow.providers.google.cloud.operators.gcs import GCSListObjectsOperator
 from airflow.providers.google.cloud.operators.bigquery import (
     BigQueryCreateExternalTableOperator,
     BigQueryInsertJobOperator
 )
-from airflow.operators.python import PythonOperator
 from airflow.utils.dates import days_ago
 from airflow.models import Variable
 
@@ -41,7 +39,12 @@ with DAG(
 
     query_transform = f"""
     CREATE OR REPLACE TABLE `{Variable.get("PROJECT_ID")}.silver.user_profiles` AS
-    SELECT state, birth_date, full_name, phone_number, email
+    SELECT 
+        state, 
+        CAST(birth_date AS DATE) AS birth_date, 
+        full_name, 
+        phone_number, 
+        email
     FROM `{Variable.get("PROJECT_ID")}.bronze.user_profiles`
     """
 

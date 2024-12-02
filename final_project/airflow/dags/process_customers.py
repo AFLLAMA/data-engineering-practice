@@ -63,10 +63,9 @@ with DAG(
         skip_leading_rows=1,
         gcp_conn_id="my_gcs_connection_id"
     )
-#, first_name, , email, registration_date, state
     query_transform = f"""
     CREATE OR REPLACE TABLE `{Variable.get("PROJECT_ID")}.silver.customers` AS
-    SELECT
+    SELECT DISTINCT
         CAST(Id AS INT64) AS client_id,
         FirstName AS first_name,
         LastName AS last_name,
@@ -93,4 +92,4 @@ with DAG(
         gcp_conn_id="my_gcs_connection_id"
     )
 
-    list_objects >> determine_latest_date >> create_external_table
+    list_objects >> determine_latest_date >> create_external_table >> transform_to_silver
